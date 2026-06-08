@@ -221,31 +221,6 @@ cct() {
 	print "cct: target set to $target_path"
 }
 
-export NVM_DIR="$HOME/.nvm"
-
-_nvm_loaded=false
-_nvm_lazy_load() {
-	if $_nvm_loaded; then
-		return
-	fi
-
-	_nvm_loaded=true
-
-	if [ -s "$NVM_DIR/nvm.sh" ]; then
-		. "$NVM_DIR/nvm.sh"
-	fi
-
-	if [ -s "$NVM_DIR/bash_completion" ]; then
-		. "$NVM_DIR/bash_completion"
-	fi
-}
-
-nvm() { _nvm_lazy_load; command nvm "$@"; }
-node() { _nvm_lazy_load; command node "$@"; }
-npm() { _nvm_lazy_load; command npm "$@"; }
-npx() { _nvm_lazy_load; command npx "$@"; }
-
-
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
