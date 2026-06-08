@@ -1,0 +1,141 @@
+# ------------------------------------------------------------
+# Kitty terminal configuration
+# Fast rendering, clean visuals, practical keybindings
+# ------------------------------------------------------------
+
+# --- Fonts ---
+font_family      JetBrainsMono Nerd Font
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size        12.0
+disable_ligatures never
+adjust_line_height 0
+adjust_column_width 0
+
+# --- Rendering and notifications ---
+repaint_delay 8
+input_delay 3
+sync_to_monitor yes
+enable_audio_bell no
+visual_bell_duration 0.0
+window_alert_on_bell no
+bell_on_tab no
+
+# --- Window behavior ---
+remember_window_size yes
+initial_window_width 120c
+initial_window_height 34c
+window_padding_width 10
+placement_strategy center
+confirm_os_window_close 0
+background_opacity 1.0
+dynamic_background_opacity no
+
+# --- Cursor ---
+cursor_shape block
+cursor_blink_interval 0
+cursor_stop_blinking_after 0
+
+# --- Scrollback and selection ---
+scrollback_lines 100000
+scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+wheel_scroll_multiplier 5.0
+touch_scroll_multiplier 1.0
+copy_on_select yes
+strip_trailing_spaces smart
+clipboard_control write-clipboard write-primary read-clipboard read-primary
+
+# --- URL behavior ---
+detect_urls yes
+underline_hyperlinks hover
+open_url_with default
+
+# --- Tabs and layouts ---
+enabled_layouts tall,grid,stack,splits
+tab_bar_edge top
+tab_bar_style separator
+tab_powerline_style slanted
+tab_separator " "
+active_tab_font_style bold
+inactive_tab_font_style normal
+
+# --- Shell integration and security ---
+shell_integration enabled
+# Launch interactive login Zsh so it reads ~/.zshrc aliases/functions consistently.
+shell /usr/bin/zsh -il
+allow_remote_control no
+
+# --- Theme: Tokyo Night ---
+foreground            #c0caf5
+background            #1a1b26
+selection_foreground  #1a1b26
+selection_background  #7aa2f7
+cursor                #c0caf5
+cursor_text_color     #1a1b26
+url_color             #73daca
+
+active_border_color   #7aa2f7
+inactive_border_color #414868
+bell_border_color     #f7768e
+
+active_tab_foreground   #1a1b26
+active_tab_background   #7aa2f7
+inactive_tab_foreground #c0caf5
+inactive_tab_background #24283b
+tab_bar_background      #16161e
+
+mark1_foreground #1a1b26
+mark1_background #ff9e64
+mark2_foreground #1a1b26
+mark2_background #9ece6a
+mark3_foreground #1a1b26
+mark3_background #e0af68
+
+color0  #15161e
+color1  #f7768e
+color2  #9ece6a
+color3  #e0af68
+color4  #7aa2f7
+color5  #bb9af7
+color6  #7dcfff
+color7  #a9b1d6
+color8  #414868
+color9  #f7768e
+color10 #9ece6a
+color11 #e0af68
+color12 #7aa2f7
+color13 #bb9af7
+color14 #7dcfff
+color15 #c0caf5
+
+# --- Productivity keybindings ---
+kitty_mod ctrl+shift
+# Start fresh login zsh instances so aliases/functions from ~/.zshrc are available.
+map kitty_mod+enter launch --type=tab --cwd=current /usr/bin/zsh -il
+map kitty_mod+t new_tab_with_cwd
+map kitty_mod+y launch --type=overlay kitten hints --type=url
+map kitty_mod+f toggle_fullscreen
+# Split and force placement direction to avoid mirrored-looking behavior.
+map kitty_mod+d combine : goto_layout splits : launch --location=vsplit --cwd=current /usr/bin/zsh -il : move_window right
+map kitty_mod+o combine : goto_layout splits : launch --location=hsplit --cwd=current /usr/bin/zsh -il : move_window down
+map kitty_mod+w close_window
+map kitty_mod+q close_tab
+map kitty_mod+comma previous_tab
+map kitty_mod+period next_tab
+map kitty_mod+r load_config_file
+map kitty_mod+h neighboring_window left
+map kitty_mod+j neighboring_window down
+map kitty_mod+k neighboring_window up
+map kitty_mod+l neighboring_window right
+map kitty_mod+left resize_window narrower 2
+map kitty_mod+right resize_window wider 2
+map kitty_mod+up resize_window taller 2
+map kitty_mod+down resize_window shorter 2
+map kitty_mod+z toggle_layout stack
+map kitty_mod+m toggle_maximized
+map kitty_mod+v layout_action maximize vertical
+map kitty_mod+home resize_window reset
+map kitty_mod+equal change_font_size all +1.0
+map kitty_mod+minus change_font_size all -1.0
+
