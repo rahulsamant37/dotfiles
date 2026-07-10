@@ -1,0 +1,144 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+command_timeout = 1000
+
+format = """
+[╭─](fg:#565f89)\
+$os\
+[](bg:#7aa2f7 fg:#7dcfff)\
+$directory\
+[](fg:#7aa2f7 bg:#bb9af7)\
+$git_branch\
+$git_status\
+[](fg:#bb9af7)\
+$fill\
+$git_metrics\
+$python\
+$nodejs\
+$rust\
+$golang\
+$docker_context\
+$kubernetes\
+$cmd_duration\
+[](fg:#1d2230)\
+$time\
+[](fg:#1d2230)\
+[ ╶─╮](fg:#565f89)
+[╰─](fg:#565f89)$character\
+$fill\
+[─╯](fg:#565f89)"""
+
+right_format = ""
+
+[fill]
+symbol = "─"
+style = "fg:#565f89"
+
+[os]
+disabled = false
+style = "bg:#7dcfff fg:#1a1b26 bold"
+format = "[  ](bg:#7dcfff fg:#1a1b26 bold)"
+
+[os.symbols]
+Arch = ""
+EndeavourOS = ""
+Manjaro = ""
+Linux = ""
+Ubuntu = ""
+Fedora = ""
+Debian = ""
+CentOS = ""
+Alpine = ""
+Amazon = ""
+Android = ""
+Macos = ""
+Windows = ""
+Redhat = ""
+Pop = ""
+
+[directory]
+style = "bg:#7aa2f7 fg:#1a1b26 bold"
+truncation_length = 4
+truncate_to_repo = false
+format = "[   $path ]($style)"
+read_only = " 󰌾"
+read_only_style = "bg:#7aa2f7 fg:#f7768e bold"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#bb9af7 fg:#1a1b26 bold"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#bb9af7 fg:#1a1b26 bold"
+format = '([$all_status$ahead_behind ]($style))'
+ahead = "󰜮${count}"
+behind = "󰜷${count}"
+diverged = "󰜮${ahead_count} 󰜷${behind_count}"
+conflicted = "󰞛${count}"
+deleted = "󰆴${count}"
+renamed = "󰑕${count}"
+modified = "󰏫${count}"
+staged = "󰐕${count}"
+untracked = "󰋗${count}"
+stashed = "󰏗${count}"
+
+[git_metrics]
+disabled = false
+added_style = "fg:#9ece6a bold"
+deleted_style = "fg:#f7768e bold"
+format = '[](fg:#9ece6a)[ +$added ]($added_style)[](fg:#9ece6a)[](fg:#f7768e)[ -$deleted ]($deleted_style)[](fg:#f7768e) '
+
+[python]
+symbol = ""
+style = "bg:#9ece6a fg:#1a1b26 bold"
+format = '[](fg:#9ece6a)[   $version ]($style)[](fg:#9ece6a) '
+
+[nodejs]
+symbol = ""
+style = "bg:#9ece6a fg:#1a1b26 bold"
+format = '[](fg:#9ece6a)[  $version ]($style)[](fg:#9ece6a) '
+
+[rust]
+symbol = ""
+style = "bg:#f7768e fg:#1a1b26 bold"
+format = '[](fg:#f7768e)[  $version ]($style)[](fg:#f7768e) '
+
+[golang]
+symbol = ""
+style = "bg:#7dcfff fg:#1a1b26 bold"
+format = '[](fg:#7dcfff)[  $version ]($style)[](fg:#7dcfff) '
+
+[docker_context]
+symbol = ""
+style = "bg:#7aa2f7 fg:#1a1b26 bold"
+format = '[](fg:#7aa2f7)[  $context ]($style)[](fg:#7aa2f7) '
+
+[kubernetes]
+disabled = false
+symbol = "󱃾"
+style = "bg:#7aa2f7 fg:#1a1b26 bold"
+format = '[](fg:#7aa2f7)[ 󱃾 $context(:$namespace) ]($style)[](fg:#7aa2f7) '
+
+[cmd_duration]
+min_time = 500
+style = "bg:#ff9e64 fg:#1a1b26 bold"
+format = '[](fg:#ff9e64)[ 󰔠 $duration ]($style)[](fg:#ff9e64) '
+
+[time]
+disabled = false
+time_format = "%I:%M %p"
+style = "bg:#1d2230 fg:#c0caf5 bold"
+format = "[  $time ]($style)"
+
+[character]
+success_symbol = "[❯](fg:#7dcfff bold)"
+error_symbol = "[❯](fg:#f7768e bold)"
+vimcmd_symbol = "[❮](fg:#bb9af7 bold)"
