@@ -76,7 +76,8 @@ fi
 setopt PROMPT_SUBST
 zstyle ':vcs_info:git:*' formats ' %F{#9ece6a}(%b)%f'
 
-PROMPT='%F{#7aa2f7}%1~%f${vcs_info_msg_0_} %(?.%F{#9ece6a}.%F{#f7768e})❯%f '
+# PROMPT='%F{#7aa2f7}%1~%f${vcs_info_msg_0_} %(?.%F{#9ece6a}.%F{#f7768e})❯%f '
+eval "$(starship init zsh)"
 
 # Competitive Companion target directory helper.
 # Usage:
@@ -239,8 +240,12 @@ setopt HIST_IGNORE_SPACE
 
 # --- Modern Developer Experience ---
 
-# mise (Universal tool manager)
-eval "$(mise activate zsh)"
+
+
+
+# Preferred Package Manager (pnpm)
+alias npm="pnpm"
+alias npx="pnpx"
 
 # zoxide (Smarter cd)
 eval "$(zoxide init zsh)"
@@ -263,3 +268,13 @@ alias zj='zellij'
 
 # Preview file content with fzf + bat
 alias preview='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+# pnpm
+export PNPM_HOME="/home/rahul/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+eval "$(~/.local/bin/direnv hook zsh)"
