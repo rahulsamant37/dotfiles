@@ -8,7 +8,8 @@ This environment relies on several modern CLI tools that replace traditional cou
 
 | Tool | Purpose | Modern Alternative To... |
 | :--- | :--- | :--- |
-| [**mise**](https://mise.jdx.dev/) | Polyglot runtime manager | `asdf`, `nvm`, `pyenv` |
+
+| [**pnpm**](https://pnpm.io/) | Fast package manager | `npm`, `yarn` |
 | [**GNU Stow**](https://www.gnu.org/software/stow/) | Symlink manager | Manual copy-pasting |
 | [**zoxide**](https://github.com/ajeetdsouza/zoxide) | Smarter navigation | `cd` |
 | [**fzf**](https://github.com/junegunn/fzf) | Fuzzy finder | `grep`, `find`, `Ctrl+R` |
@@ -25,12 +26,12 @@ This environment relies on several modern CLI tools that replace traditional cou
 
 #### **Arch Linux (Pacman)**
 ```bash
-sudo pacman -S --noconfirm zsh mise zoxide fzf ripgrep zellij eza bat git-delta stow
+sudo pacman -S --noconfirm zsh zoxide fzf ripgrep zellij eza bat git-delta stow
 ```
 
 #### **Ubuntu/Debian (Apt)**
 ```bash
-# Note: Some tools like mise/zellij may need their own repos or manual install
+# Note: Some tools like zellij may need their own repos or manual install
 sudo apt install zsh stow fzf ripgrep bat
 # Symlink batcat to bat
 mkdir -p ~/.local/bin && ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -63,12 +64,7 @@ stow shell
 chsh -s $(which zsh)
 ```
 
-### Initialize Runtimes (Node, etc.)
-After starting a new shell, install your preferred languages via `mise`:
-```bash
-mise use -g node@latest
-mise use -g python@latest
-```
+
 
 ---
 
