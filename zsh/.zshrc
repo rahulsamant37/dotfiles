@@ -278,3 +278,26 @@ esac
 # pnpm end
 
 eval "$(~/.local/bin/direnv hook zsh)"
+
+# Smart image viewer:
+# Intelligently displays images directly in the terminal (if supported) or falls back to a GUI.
+img() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: img <image-file>..."
+    return 1
+  fi
+
+  # Check if we are running inside Kitty terminal (even through tmux/screen)
+  if [[ -n "$KITTY_WINDOW_ID" ]] && command -v kitty >/dev/null 2>&1; then
+    kitty +kitten icat --align left "$@"
+  elif command -v imv >/dev/null 2>&1; then
+    imv "$@" >/dev/null 2>&1 &
+  elif command -v feh >/dev/null 2>&1; then
+    feh "$@" >/dev/null 2>&1 &
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$@" >/dev/null 2>&1 &
+  else
+    echo "Error: No suitable image viewer found (kitty icat, imv, feh, or xdg-open)."
+    return 1
+  fi
+}
