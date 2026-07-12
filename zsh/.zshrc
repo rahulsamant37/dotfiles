@@ -240,13 +240,6 @@ setopt HIST_IGNORE_SPACE
 
 # --- Modern Developer Experience ---
 
-
-
-
-# Preferred Package Manager (pnpm)
-alias npm="pnpm"
-alias npx="pnpx"
-
 # zoxide (Smarter cd)
 eval "$(zoxide init zsh)"
 
